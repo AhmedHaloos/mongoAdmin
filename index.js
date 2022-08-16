@@ -35,5 +35,5 @@ app.use("/api/orders", orderRouter);
 
 //listen to the server
 app.listen(process.env.PORT || 5000, () => {
-  console.log("backend is listening");
+  console.log(`backend is listening to port ${process.env.PORT}`);
 });
