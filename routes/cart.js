@@ -7,7 +7,7 @@ const {
 } = require("./verifyToken");
 
 //create Cart
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
   const newCart = new Cart(req.body);
   try {
     const savedCart = await newCart.save();
@@ -20,7 +20,7 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 //update Cart
-router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const updatedCart = await Cart.findByIdAndUpdate(
       req.params.id,
@@ -38,7 +38,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 // //delete Cart
-router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     await Cart.findByIdAndDelete(req.params.id);
     res.status(200).json("Cart has been deleted succefully");
@@ -50,7 +50,7 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 // //get Cart
-router.get("/find/:userid", verifyTokenAndAuthorization, async (req, res) => {
+router.get("/find/:userid", async (req, res) => {
   try {
     const cart = await Cart.findOne({ userId: req.params.userid });
 
@@ -63,7 +63,7 @@ router.get("/find/:userid", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 //get all carts
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const carts = await Cart.find();
     res.status(200).json(carts);
