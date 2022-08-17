@@ -16,7 +16,7 @@ router.post("/", async (req, res) => { //verifyTokenAndAdmin
 });
 
 //update product
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const updatedProdut = await Product.findByIdAndUpdate(
       req.params.id,
@@ -34,7 +34,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 // //delete product
-router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);
     res.status(200).json("Product has been deleted succefully");
