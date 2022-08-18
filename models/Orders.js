@@ -3,11 +3,12 @@ const OrderSchema = new mongoose.Schema(
   {
     userId: { type: String, required: true },
     products: [
-      { productId: { type: String }, quantity: { type: Number, default: 1 } },
+      { productId: { type: String , required : true}, 
+      quantity: { type: Number, default: 1 } , price:{type : Number, required:true }},
     ],
-    amount: { type: Number, required: true },
+    totalPrice: { type: Number, required: true },
     address: { type: Object, required: true },
-    status: { type: String, default: "pendding" },
+    status: { type: String, default: "pendding", enum : ["pending", "completed", "canceled"] },
   },
   { timestamps: true }
 );
