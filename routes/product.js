@@ -86,4 +86,20 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get('/brand/:brandId',async (req, res)=>{
+
+  try{
+
+    const brandId = req.params.brandId;
+    const products = await Product.find({brand : brandId});
+    res.status(200).json(products);
+  }
+  catch(er){
+    console.log(er);
+    res.status(500).json(er)
+  }
+
+})
+
+
 module.exports = router;

@@ -8,9 +8,8 @@ const {
 
 //create order
 router.post("/", async (req, res) => {
-  const newOrder = new Order(req.body);
   try {
-    const savedOrder = await newOrder.save();
+    const savedOrder = await  new Order(req.body).save();
     res.status(200).json(savedOrder);
   } catch {
     (err) => {

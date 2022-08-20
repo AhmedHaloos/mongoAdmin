@@ -43,9 +43,9 @@ router.delete("/:id", async (req, res) => {
 });
 
 // //get product
-router.get("/find/:id", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const reviews = await Reviews.findById(req.params.id);
+    const reviews = await Reviews.find({});
 
     res.status(200).json(reviews);
   } catch {
@@ -56,16 +56,19 @@ router.get("/find/:id", async (req, res) => {
 });
 
 //get all product or selected product
-router.get("/", async (req, res) => {
+router.get("/:userId", async (req, res) => {
     try{
+      
+        if(req.params.userId){
 
-        const  reviews = await Reviews.find().sort({ createdAt: -1 }).limit(5);
-        res.status(200).json(reviews)
-    } catch {
-        (err) => {
-          res.status(500).json(err);
-        };
-      }
+          const  reviews = await Reviews.find({userId : req.params.userId});
+          res.status(200).json(reviews)
+        }
+        } catch {
+          (err) => {
+            res.status(500).json(err);
+          };
+        }
 
 });
 

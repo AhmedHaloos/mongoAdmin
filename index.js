@@ -10,6 +10,7 @@ const productRouter = require("./routes/product");
 const cartRouter = require("./routes/cart");
 const orderRouter = require("./routes/order");
 const reviewsRouter = require("./routes/reviews");
+const BrandsRouter = require("./routes/brand");
 
 //to be able to use dotenv library
 dotenv.config();
@@ -34,6 +35,7 @@ app.use("/api/products", productRouter);
 app.use("/api/carts", cartRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/reviews", reviewsRouter);
+app.use("/api/brands", BrandsRouter);
 
 //listen to the server
 app.listen(process.env.PORT || 5000, () => {

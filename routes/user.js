@@ -71,6 +71,36 @@ router.get("/", async (req, res) => {//verifyTokenAndAdmin
     };
   }
 });
+//get user by email
+router.get("/email/:email", async (req, res) => {//verifyTokenAndAdmin
+  const myEmail = req.params.email;
+ 
+
+  try {
+    const user = await User.find({email : myEmail })
+    .catch((e)=>{console.log(e); res.json(e)})
+    console.log(user);
+   
+    res.status(200).json(user);
+  } catch {
+    (err) => {
+      res.status(500).json(err);
+    };
+  }
+});
+//add user 
+router.post("/", async (req, res) => {//verifyTokenAndAdmin
+  
+  try {
+      const res = await new User(req.body).save();
+
+    res.status(200).json(res);
+  } catch {
+    (err) => {
+      res.status(500).json(err);
+    };
+  }
+});
 
 //get state
 router.get("/stat", async (req, res) => {  //verifyTokenAndAdmin
